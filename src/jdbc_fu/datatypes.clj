@@ -6,13 +6,13 @@
    (as string) to their values. Providing a `:reverse` optional argument  turns
    the result in a map of field values to field names."
   [class & options]
-  (let [arrange (if (some #(= :reverse %) options) (comp vec reverse) identity)]
+  (let [arrange (if (:reverse (set options)) reverse identity)]
     (->> (.getDeclaredFields class)
          (filter #(let [m (.getModifiers %)]
                     (and (Modifier/isStatic m)
                          (Modifier/isPublic m))))
-         (map #(arrange (vector (.getName %) (.get % nil))))
-         (into {})
+         (mapcat #(arrange (list (.getName %) (.get % nil))))
+         (apply assoc {})
      )))
 
 (def
