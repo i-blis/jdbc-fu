@@ -1,4 +1,4 @@
-(defproject jdbc-fu "0.1.0"
+(defproject jdbc-fu "0.1.0-SNAPSHOT"
   :description "A collection of utility functions on top of java.jdbc"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/java.jdbc "0.3.4"]]
